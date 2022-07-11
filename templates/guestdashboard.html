@@ -1,0 +1,186 @@
+{% extends 'nav.html' %}
+
+<style>
+
+</style>
+{% block content %}
+
+<div class="container border">
+    <div class="row"
+        style="margin: 30px 0 0 0; background-color:rgb(94, 249, 249); height: 60px; text-align:center; padding:10px 0 0 0;">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-5">
+            <h3>GUEST DASHBOARD</h3>
+        </div>
+        <div class="col-sm-1"></div>
+        {% if guest %}
+        <div class="col-sm-1"><a href="{% url 'guest_update' guest %}"><button
+                    class="btn btn-success">Update</button></a>
+        </div>
+        <div class="col-sm-1"><a href="{% url 'guest_delete' %}"><button class="btn btn-danger">Delete</button></div>
+        </a>
+        {% endif %}
+    </div>
+
+    <div class="row border" style="margin: 50px 0 0 0; padding: 30px 50px;">
+        <div class="row border" style="margin: 0 0 30px 0;">
+            <div class="col-sm ">
+                <h3 style="text-align: center;">Personal Informtion</h3>
+            </div>
+
+        </div>
+
+        <div class="row border" style="margin: 0 0 20px 0;">
+            <div class="col-sm-4 ">
+
+            </div>
+            <div class="col-sm-4">
+                <p style="font-size: 17px;">Username: {{data.username}}</p>
+
+            </div>
+            <div class="col-sm-4">
+
+            </div>
+        </div>
+
+
+
+        <div class="row border" style="margin: 0 0 30px 0;">
+            <div class="col-sm-4 ">
+                <p style="font-size: 17px;">First Name: {{data.first_name}}</p>
+            </div>
+            <div class="col-sm-4 ">
+                <p style="font-size: 17px;">LastName: {{data.last_name}}</p>
+            </div>
+            <div class="col-sm-4 ">
+                <p style="font-size: 17px;">FatherName: {{data.father_name}}</p>
+            </div>
+        </div>
+
+
+        <div class="row border" style="margin: 0 0 30px 0;">
+            <div class="col-sm-1 ">
+
+            </div>
+            <div class="col-sm-4 ">
+                <p style="font-size: 17px;">Age: {{data.age}}</p>
+            </div>
+            <div class="col-sm-2 ">
+
+            </div>
+            <div class="col-sm-4 ">
+                <p style="font-size: 17px;">Gender: {{data.gender}}</p>
+            </div>
+            <div class="col-sm-1 ">
+
+            </div>
+        </div>
+
+        <div class="row border" style="margin: 0 0 30px 0;">
+            <div class="col-sm-1 ">
+
+            </div>
+            <div class="col-sm-4 ">
+                <p style="font-size: 17px;">Email: {{data.email}}</p>
+            </div>
+            <div class="col-sm-2 ">
+
+            </div>
+            <div class="col-sm-4 ">
+                <p style="font-size: 17px;">Phone No: {{data.phn_no}}</p>
+            </div>
+            <div class="col-sm-1 ">
+
+            </div>
+        </div>
+
+
+        <div class="row border" style="margin: 0 0 30px 0;">
+            <div class="col-sm-1 ">
+
+            </div>
+            <div class="col-sm-4 ">
+                <p>Native Address: {{data.native_address}}</p>
+            </div>
+            <div class="col-sm-2 ">
+
+            </div>
+            <div class="col-sm-4 ">
+                <p>Work Address: {{data.work_address}}</p>
+            </div>
+            <div class="col-sm-1 ">
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+    <!-- -------------------------------- Room ----------------------------------------- -->
+
+    <div class="row border" style="margin: 100px 0 0 0; padding: 30px 50px;">
+        <div class="row border" style="margin: 0 0 30px 0;">
+            <div class="col-sm ">
+                <h3 style="text-align: center;">Room Informtion</h3>
+            </div>
+
+        </div>
+
+        <div class="row border" style="margin: 0 0 20px 0;">
+            <div class="col-sm-1 ">
+
+            </div>
+            <div class="col-sm-4">
+                <p style="font-size: 17px;">Room No: {{data.room_no}}</p>
+            </div>
+            <div class="col-sm-2 ">
+
+            </div>
+            <div class="col-sm-4">
+                <p style="font-size: 17px;">Room Type: {{data.room_no.room_type}}</p>
+            </div>
+            <div class="col-sm-1 ">
+
+            </div>
+        </div>
+
+
+
+        <div class="row border" style="margin: 0 0 30px 0;">
+            <div class="col-sm-1 ">
+
+            </div>
+            <div class="col-sm-4 ">
+                <p style="font-size: 17px;">Fees: {{data.fees}}</p>
+            </div>
+            <div class="col-sm-2 ">
+
+            </div>
+
+            {% if check_room %}
+            <div class="col-sm-4 ">
+                <p style="font-size: 17px;">Payment: {% if data.status == 'PENDING' %}<span
+                        style="font-size: 13px; color: red;">{{data.status}}</span> <a href="{% url 'fees' %}"><button
+                            class="btn btn-primary "
+                            style=" font-size: 10px; margin: 0px 0 0 20px; padding: 0 0 0px 0; width:50px; height: 20px;">Pay</button></a>
+                    {% else %}<span style="font-size: 13px; color: green;">{{data.status}}</span>{% endif %}</p>
+            </div>
+            {% endif %}
+
+
+            <div class="col-sm-1 ">
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+{% endblock %}

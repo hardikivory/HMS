@@ -1,0 +1,109 @@
+{% extends 'nav.html' %}
+
+
+{% block content %}
+
+<section class="vh-100" style="background-color: #eee;">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+                <div class="card text-black" style="border-radius: 25px;">
+                    <div class="card-body p-md-5">
+                        <div class="row justify-content-center">
+
+                            {% if temp %}
+                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Rooms</p>
+
+                                <form method="post" class="mx-1 mx-md-4" novalidate>
+                                    {% csrf_token %}
+
+                                    <label>Room Type</label>
+                                    {{form.room_type}}
+                                    {{form.room_type.errors}}
+                                    <br>
+
+
+
+                                    {{form.non_field.errors}}
+
+
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button type="submit" class="btn btn-primary"
+                                            style="width: 100px;">Find</button>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                            <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                                    class="img-fluid" alt="Sample image">
+
+                                {% else %}
+
+                                {% if type_room %}
+                                <center>
+                                    <h3 style="margin: 0 0 50px 0;">Available Rooms</h3>
+                                </center>
+                                <div class="row" style="background-color: rgb(180, 225, 248); padding: 10px;">
+
+
+                                    {% for i in type_room %}
+                                    {% if i.room_guest >= 5 %}
+                                    <div class="col-sm-1 m-1"
+                                        style="background-color: rgb(128, 4, 0); height:100px; padding: 0px 0 0 0;">
+                                        <p style=" margin: 0 0 0 0px; font-size: 15px; color: white;">{{i.room_no}}
+                                            &nbsp;
+
+                                        </p>
+
+                                        <p style=" margin: 16px 0 0 7px; font-size: 10px; color: white;">Guest: &nbsp;
+                                            <span style="font-size:15px; color: white;">FULL</span>
+                                        </p>
+
+                                    </div>
+                                    {% else %}
+                                    <div class="col-sm-1 m-1"
+                                        style="background-color: green; height:100px; padding: 0px 0 0 0;">
+                                        <p style=" margin: 0 0 0 0px; font-size: 15px; color: white;">
+                                            {{i.room_no}}&nbsp;
+
+                                        </p>
+
+                                        <p style=" margin: 0 0 0 7px; font-size: 10px; color: white;">Guest: &nbsp;
+                                            <span style="color: white; font-size: 15px;">{{i.room_guest}}</span>
+                                        </p>
+                                        <p style=" margin: 0 0 0 7px; font-size: 10px; color: white;">Max: &nbsp;
+                                            <span style="color: white; font-size: 15px;"> 5</span>
+                                        </p>
+
+
+
+                                        <a style="text-decoration: none;" href="{% url 'roombook' i.room_no %}">
+                                            <p
+                                                style="color: green; background-color: white; width: 40px; margin: 15px 0 0 25px; font-size:12px; text-align: center;">
+                                                Book</p>
+                                        </a>
+                                    </div>
+                                    &nbsp;
+                                    &nbsp;
+
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+
+</div>
+{% endblock %}

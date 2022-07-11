@@ -1,0 +1,26 @@
+{% extends 'nav.html' %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row" style="padding: 50px 0;">
+        <div class="col-sm-12 text-center">
+            <h1>Contact Form</h1>
+        </div>
+        <form class="border" style="padding: 30px; margin: 50px 0 0 0; border-radius: 10px; background-color:rgb(241, 241, 241);" action="" method="post">
+            {% csrf_token %}
+            <label for="">Name</label>
+            {{form.name}}
+            <label for="">Phn No.</label>
+            {{form.phn_no}}
+            <label for="">Email</label>
+            {{form.email}}
+            <label for="">Description</label>
+            {{form.desc}}
+            <center><button class="btn btn-primary" style="margin: 30px 0; width: 100px;">Submit</button></center>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

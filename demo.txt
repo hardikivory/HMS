@@ -1,0 +1,221 @@
+
+
+PROJECT NAME: HOSTEL MANAGEMENT SYSTEM ( HMS )
+
+Description:
+        - This project is based on Hostel Management System. Its helps for managing 'Guests' and 'Workers' data. so many features likes Guest and Worker Registation,
+        Room Booking, Room Services, Guest Fees collect, Worker salary pay.
+
+
+
+
+
+
+Requirements:
+        - Python 2.9.10
+        - Django==4.0.4
+
+Instalation:
+        1. python 2.9.10
+        Command - pip3 install python 2.9.10
+
+        2. Django==4.0.4
+        Command - pip3 install Django==4.0.4
+
+
+
+Repository Structure:
+
+        HMS
+         |
+         |---- accounts
+         |        |
+         |        |--- __pycache__
+         |        |
+         |        |--- migrations
+         |        |
+         |        |--- __init__.py
+         |        |
+         |        |--- admin.py
+         |        |
+         |        |--- apps.py
+         |        |
+         |        |--- forms.py
+         |        |
+         |        |--- models.py
+         |        |
+         |        |--- test.py
+         |        |
+         |        |--- urls.py
+         |        |
+         |        |--- views.py
+         |         
+         |---- HMS
+         |      |
+         |      |--- __pycache__
+         |      |
+         |      |--- __init__.py
+         |      |
+         |      |--- asgi.py
+         |      |
+         |      |--- settings.py
+         |      |
+         |      |--- urls.py
+         |      |
+         |      |--- wsgi.py
+         |
+         |---- static
+         |       |
+         |       |--- admin
+         |              |
+         |              |--- css
+         |              |--- fonts
+         |              |--- img
+         |              |--- js
+         |
+         |---- templates
+         |       |
+         |       |--- guestdashboard.html
+         |       |
+         |       |--- guestupdate.html
+         |       |
+         |       |--- home.html
+         |       |
+         |       |--- login.html
+         |       |
+         |       |--- nav.html
+         |       |
+         |       |--- register.html
+         |       |
+         |       |--- workerdashboard.html
+         |       |
+         |       |--- workerupdate.html
+         |
+         |---- db.sqlite3
+         |
+         |---- manage.py
+         |
+         |---- README.md
+
+
+
+
+
+
+
+Create Django Project
+command:
+        - django-admin startproject HMS
+
+
+
+
+
+
+Create Apps
+command:
+        - python3 manage.py startapp accounts
+
+Install app:
+settings.py/
+
+        INSTALLED_APPS = [
+                'accounts'
+        ]
+
+
+
+
+
+Create Database
+command:
+        - python3 manage.py migrate
+note:
+        - some default tables created automatically, likes admin, auth, contenttypes, sessions.
+
+
+
+
+
+
+Create Templates Repository:
+        
+       HMS
+        |
+        |--- templates
+
+
+description: 
+        - All the templates files stored here.
+
+
+Add path of templates:
+settings.py/
+
+        TEMPLATES = [
+        {
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        }
+
+
+
+
+
+Create seprate urls.py in accounts Repository:
+        HMS
+        |
+        |--- accounts
+                |
+                |--- urls.py
+
+
+Include url:
+urls.py/
+
+        from django.urls import path,include
+
+        urlpatterns = [
+                path('', include('accounts.urls')),
+        ]
+
+
+
+
+
+
+Model Structure:
+
+        accounts
+           |
+           |---- models.py
+           |       |
+                   |--- User
+                   |
+                   |--- GuestManager
+                   |
+                   |--- Guest
+                   |
+                   |--- WorkerManager
+                   |
+                   |--- Worker
+
+
+
+        Description:
+        
+                User: 
+                - This class is Abstract from the 'AbstractUser', so we can add own custom fields in default 'User' model.
+
+                GuestManager:
+                - This class is inherite from the BaseUserManager, it's manage queries for Guest class.
+                - In this class 'get_queryset' function is seprate user based on role_type field is 'GUEST'. which is define in the 'User' class.
+
+                Guest:
+                - Inherite all the 'User' clss fields in 'Guest' class, using proxy model.
+                
+                WorkerManager:
+                - This class is inherite from the BaseUserManager, it's manage queries for Worker class.
+                - In this class 'get_queryset' function is seprate user based on role_type field is 'WORKER'. which is define in the 'User' class.
+                
+                Worker:
+                - Inherite all the 'User' clss fields in 'Worker' class, using proxy model.

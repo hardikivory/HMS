@@ -1,7 +1,10 @@
 
+import email
+from telnetlib import STATUS
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser,AbstractBaseUser,BaseUserManager
 import uuid
+
 
 # Create your models here.
 
@@ -30,19 +33,26 @@ class User(AbstractUser):
     native_address = models.CharField(max_length=100,blank=True)
     
     
-    #Guest
+    #Guest fields
     father_name = models.CharField(max_length=100,blank=True)
-    room_no = models.IntegerField(null=True, blank=True)
+    room_no = models.ForeignKey('Room', on_delete=models.CASCADE, null=True, blank=True)
     fees = models.IntegerField(null=True,blank=True)
     work_address = models.CharField(max_length=100,blank=True)
-    TYPE = [
-        ('NORMAL', 'Normal'),
-        ('PREMIUM', 'Premium'),
+    
+    class Room_Types(models.TextChoices):
+        NORMAL ='NORMAL', "normal"
+        PREMIUM = 'PREMIUM', "premium"
+        
+    # room_type = models.ForeignKey('MyRoomType', on_delete=models.CASCADE, null=True, blank=True)
+    
+    STATUS = [
+        ('PENDING', 'Pending'),
+        ('SUCCESS', 'Success'),
     ]
-    room_type = models.CharField(max_length=100, choices= TYPE, default='NORMAL')
+    status = models.CharField(max_length=100, choices=STATUS, default='PENDING')
     
     
-    #Worker
+    #Worker fields
     salary = models.IntegerField(null=True,blank=True)
     ROLE = [
         ('GARDENER','Gardener'),
@@ -53,20 +63,30 @@ class User(AbstractUser):
     role = models.CharField(max_length=100, choices=ROLE,blank=True)
     current_address = models.CharField(max_length=100,blank=True)
     
-    
+    def __str__(self):
+        return str(self.id)
      
 
-class GuestManager(models.Manager):     
+
+
+
+
+#Guest
+class GuestManager(BaseUserManager):     
     def get_queryset(self, *args, **kwargs):
-        return super().get_queryset(*args, **kwargs).filter(type= User.Types.GUEST)
+        return super().get_queryset(*args, **kwargs).filter(type= User.Types.GUEST)   
     
-class Guest(User):   
+class Guest(User):
+
+    email = User.email
     objects = GuestManager() 
     
     class Meta:
         proxy = True
- 
-class WorkerManager(models.Manager):
+    
+  
+#Worker
+class WorkerManager(BaseUserManager):
     def get_queryset(self, *args, **kwargs):
         return super().get_queryset(*args, **kwargs).filter(type= User.Types.WORKER)
     
@@ -74,13 +94,55 @@ class Worker(User):
     objects = WorkerManager()
     class Meta:
         proxy = True
+        
+        
+        
+  
+
+
+# #Room
+# class RoomManager(BaseUserManager):
+#     def get_queryset(self, *args, **kwargs):
+#         return super().get_queryset(*args, **kwargs).all()
+    
+# class Room(User):
+#     objects = RoomManager()
+    
+#     class Meta:
+#         proxy = True    
     
  
    
+class Room(models.Model):
+    room_no = models.IntegerField(null=True, blank=True)
+    room_guest = models.IntegerField(default=0)
+    room_type = models.ForeignKey('RoomType', on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return str(self.room_no)
+    
+class RoomType(models.Model):
+    my_room_type = models.CharField(max_length=100, null=True, blank=True)
+    my_room_price = models.IntegerField()
+
+    def __str__(self):
+        return self.my_room_type
+    
   
   
   
-  
+class Contact(models.Model):
+    
+    name = models.CharField(max_length=100)
+    phn_no = models.IntegerField(null=True, blank=True)
+    email = models.EmailField()
+    desc = models.TextField()
+    
+    def __str__(self):
+        return self.name
+    
+    
+    
    
 # # ABSTRACT MODEL  ( abstract = True )
  

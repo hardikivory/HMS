@@ -4,8 +4,21 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.NavView),
-    path('home/', views.HomeView),
-    path('register/', views.RegisterView),
+    path('nav/', views.NavView),
+    path('', views.HomeView, name='home'),
+    path('register/', views.RegisterView, name='register'),
+    path('login/', views.LoginView, name='login'),
+    path('logout/', views.LogoutView, name='logout'),
+    path('guest/dashboard/', views.GuestDashboardView, name='guest_dashboard'),
+    path('guest/update/<int:id>', views.GuestUpdateView, name='guest_update'),
+    path('guest/delete/', views.GuestDeleteView, name='guest_delete'),
+    path('worker/dashboard/', views.WorkerDashboardView, name='worker_dashboard'),
+    path('worker/update/<int:id>', views.WorkerUpdateView, name='worker_update'),  
+    path('worker/delete/', views.WorkerDeleteView, name='worker_delete'),  
+    path('room/', views.RoomView, name='room'),    
+    path('room/book/<int:room_no>', views.RoomBookView, name='roombook'),    
+    path('fees/', views.FeesView, name='fees'),    
+    path('about/', views.AboutView, name='about'),    
+    path('contact/', views.ContactView, name='contact'),    
 
 ]

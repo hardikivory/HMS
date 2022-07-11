@@ -1,0 +1,155 @@
+{% extends 'nav.html' %}
+
+<style>
+
+</style>
+{% block content %}
+
+<div class="container border">
+    <div class="row"
+        style="margin: 30px 0 0 0; background-color:rgb(94, 249, 249); height: 60px; text-align:center; padding:10px 0 0 0;">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-5">
+            <h3>WORKER DASHBOARD</h3>
+        </div>
+        <div class="col-sm-1"></div>
+        {% if worker %}
+        <div class="col-sm-1"><a href="{% url 'worker_update' worker %}"><button
+                    class="btn btn-success">Update</button></a>
+        </div>
+        <div class="col-sm-1"><a href="{% url 'worker_delete' %}"><button
+                    class="btn btn-danger">Delete</button></a></div>
+        {% endif %}
+    </div>
+
+    <div class="row border" style="margin: 50px 0 0 0; padding: 30px 50px;">
+        <div class="row border" style="margin: 0 0 30px 0;">
+            <div class="col-sm ">
+                <h3 style="text-align: center;">Personal Informtion</h3>
+            </div>
+
+        </div>
+
+        <div class="row border" style="margin: 0 0 20px 0;">
+            <div class="col-sm-4 ">
+
+            </div>
+            <div class="col-sm-4">
+                <p style="font-size: 17px;">Username: {{data.username}}</p>
+
+            </div>
+            <div class="col-sm-4">
+
+            </div>
+        </div>
+
+
+
+        <div class="row border" style="margin: 0 0 30px 0;">
+            <div class="col-sm-4 ">
+                <p style="font-size: 17px;">First Name: {{data.first_name}}</p>
+            </div>
+            <div class="col-sm-4 ">
+                <p style="font-size: 17px;">LastName: {{data.last_name}}</p>
+            </div>
+
+        </div>
+
+
+        <div class="row border" style="margin: 0 0 30px 0;">
+            <div class="col-sm-1 ">
+
+            </div>
+            <div class="col-sm-4 ">
+                <p style="font-size: 17px;">Age: {{data.age}}</p>
+            </div>
+            <div class="col-sm-2 ">
+
+            </div>
+            <div class="col-sm-4 ">
+                <p style="font-size: 17px;">Gender: {{data.gender}}</p>
+            </div>
+            <div class="col-sm-1 ">
+
+            </div>
+        </div>
+
+        <div class="row border" style="margin: 0 0 30px 0;">
+            <div class="col-sm-1 ">
+
+            </div>
+            <div class="col-sm-4 ">
+                <p style="font-size: 17px;">Email: {{data.email}}</p>
+            </div>
+            <div class="col-sm-2 ">
+
+            </div>
+            <div class="col-sm-4 ">
+                <p style="font-size: 17px;">Phone No: {{data.phn_no}}</p>
+            </div>
+            <div class="col-sm-1 ">
+
+            </div>
+        </div>
+
+
+        <div class="row border" style="margin: 0 0 30px 0;">
+            <div class="col-sm-1 ">
+
+            </div>
+            <div class="col-sm-4 ">
+                <p>Native Address: {{data.native_address}}</p>
+            </div>
+            <div class="col-sm-2 ">
+
+            </div>
+            <div class="col-sm-4 ">
+                <p>Current Address: {{data.current_address}}</p>
+            </div>
+            <div class="col-sm-1 ">
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+    <!-- -------------------------------- Work ----------------------------------------- -->
+
+    <div class="row border" style="margin: 100px 0 0 0; padding: 30px 50px;">
+        <div class="row border" style="margin: 0 0 30px 0;">
+            <div class="col-sm ">
+                <h3 style="text-align: center;">Work Informtion</h3>
+            </div>
+
+        </div>
+
+        <div class="row border" style="margin: 0 0 20px 0;">
+            <div class="col-sm-1 ">
+
+            </div>
+            <div class="col-sm-4">
+                <p style="font-size: 17px;">Role: {{data.role}}</p>
+            </div>
+            <div class="col-sm-2 ">
+
+            </div>
+            <div class="col-sm-4">
+                <p style="font-size: 17px;">Salary: {{data.salary}}</p>
+            </div>
+            <div class="col-sm-1 ">
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+{% endblock %}

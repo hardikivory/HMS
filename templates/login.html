@@ -11,7 +11,7 @@
                         <div class="row justify-content-center">
                             <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Register</p>
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
 
                                 <form method="post" class="mx-1 mx-md-4" novalidate>
                                     {% csrf_token %}
@@ -19,12 +19,6 @@
                                     <label>Username</label>
                                     {{form.username}}
                                     {{form.username.errors}}
-
-                                    <br>
-
-                                    <label>Email</label>
-                                    {{form.email}}
-                                    {{form.email.errors}}
                                     <br>
 
                                     <label>Password</label>
@@ -36,21 +30,11 @@
 
 
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                                        <button type="submit" class="btn btn-primary btn-lg">Login</button>
                                     </div>
               
                                 </form>
-                                {% if messages %}
-                                <center>
-                                    <ul class="messages" style="color: green; background-color: white; margin: 0 0 0 150px;">
-                                        {% for message in messages %}
-                                        <li {% if message.tags %} class=" {{ message.tags }} " {% endif %}
-                                            style="color: green; ">
-                                            Registation Successfully. </li>
-                                        {% endfor %}
-                                    </ul>
-                                </center>
-                                {% endif %}
+                                
                             </div>
                             <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
