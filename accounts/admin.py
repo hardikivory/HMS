@@ -7,7 +7,7 @@ from . models import User,Guest,Worker,Room,RoomType,Contact
 
 @admin.register(User)
 class AdminUser(admin.ModelAdmin):
-    list_display = ['id','username', 'first_name', 'last_name', 'email']
+    list_display = ['id','username', 'first_name', 'last_name', 'email', 'profile_pic']
     
     
 @admin.register(Guest)

@@ -1,5 +1,5 @@
 {% extends 'nav.html' %}
-
+{% load static %}
 <style>
 
 </style>
@@ -31,14 +31,25 @@
         </div>
 
         <div class="row border" style="margin: 0 0 20px 0;">
-            <div class="col-sm-4 ">
+            <div class="col-sm-1">
 
             </div>
-            <div class="col-sm-4">
-                <p style="font-size: 17px;">Username: {{data.username}}</p>
-
+            <div class="col-sm-3 border">
+               <p>profile Photo: </p>
+                
+               {% if photo %}
+                <div style="width: 100px; height: 100px; border:1px solid black; border-radius: 50%;">
+                    <img src="{{photo.url}}" alt="" style="height: 100%; width: 100%; border-radius: 50%; ">
+                </div>
+              {% endif %}
             </div>
-            <div class="col-sm-4">
+            
+            <div class="col-sm-3" style="margin: 20px 20px 0;">
+                <p style="font-size: 17px;">First Name: {{data.first_name}}</p>
+                <p style="font-size: 17px;">LastName: {{data.last_name}}</p>
+                <p style="font-size: 17px;">FatherName: {{data.father_name}}</p>
+            </div>
+            <div class="col-sm-3">
 
             </div>
         </div>
@@ -46,15 +57,11 @@
 
 
         <div class="row border" style="margin: 0 0 30px 0;">
-            <div class="col-sm-4 ">
-                <p style="font-size: 17px;">First Name: {{data.first_name}}</p>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-3 border ">
+                <p style="font-size: 17px;">UserName: {{data.username}}</p>
             </div>
-            <div class="col-sm-4 ">
-                <p style="font-size: 17px;">LastName: {{data.last_name}}</p>
-            </div>
-            <div class="col-sm-4 ">
-                <p style="font-size: 17px;">FatherName: {{data.father_name}}</p>
-            </div>
+            <div class="col-sm border">Documents: {{data.document}}</div>
         </div>
 
 
@@ -113,6 +120,20 @@
             </div>
         </div>
 
+        
+        <div class="row border" style="margin: 0 0 30px 0;">
+            <div class="col-sm-2 ">
+
+            </div>
+            <div class="col-sm-6 border">
+                <p>Change Password: <a href="{% url 'guest_change_password_link' %}"><span style="margin: 0 0 0 50px;"> Send Mail</span></p></a>
+                <span>click on 'Send Mail' for Change Password Link.</span>
+            </div>          
+           
+            
+        </div>
+        
+        
 
 
     </div>

@@ -27,10 +27,10 @@
                                     {{form.email.errors}}
                                     <br>
 
-                                    <label>Password</label>
+                                    <!-- <label>Password</label>
                                     {{form.password}}
                                     {{form.password.errors}}
-                                    <br>
+                                    <br> -->
 
                                     {{form.non_field.errors}}
 
@@ -40,14 +40,14 @@
                                     </div>
               
                                 </form>
-                                {% if messages %}
+                                {% if msg %}
                                 <center>
                                     <ul class="messages" style="color: green; background-color: white; margin: 0 0 0 150px;">
-                                        {% for message in messages %}
+                                       
                                         <li {% if message.tags %} class=" {{ message.tags }} " {% endif %}
                                             style="color: green; ">
-                                            Registation Successfully. </li>
-                                        {% endfor %}
+                                            {{msg}} </li>
+                                     
                                     </ul>
                                 </center>
                                 {% endif %}

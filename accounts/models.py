@@ -1,18 +1,27 @@
 
-import email
-from telnetlib import STATUS
 from django.db import models
 from django.contrib.auth.models import AbstractUser,AbstractBaseUser,BaseUserManager
 import uuid
 
 
+
+
 # Create your models here.
 
 ID_LENGTH = 4
+PASS_LENGTH = 8
 
+def id_gen():
+    return str(uuid.uuid4().int)[:ID_LENGTH]
+
+def pass_gen():
+    return str(uuid.uuid4())[:PASS_LENGTH]
     
 class User(AbstractUser):
     
+    password = models.CharField(default=pass_gen, max_length=PASS_LENGTH)
+    id = models.AutoField(default=id_gen, max_length=ID_LENGTH, primary_key=True)
+    # id = models.PositiveBigIntegerField(primary_key=True)
     class Types(models.TextChoices):
         GUEST ='GUEST', "guest"
         WORKER = 'WORKER', "Worker"
@@ -31,7 +40,8 @@ class User(AbstractUser):
     email = models.EmailField(null=True,blank=True)
     phn_no = models.IntegerField(null=True,blank=True)
     native_address = models.CharField(max_length=100,blank=True)
-    
+    profile_pic = models.ImageField(upload_to = 'profile', blank=True, null=True)
+    document = models.FileField(upload_to='documents', blank=True, null=True)
     
     #Guest fields
     father_name = models.CharField(max_length=100,blank=True)
@@ -63,12 +73,14 @@ class User(AbstractUser):
     role = models.CharField(max_length=100, choices=ROLE,blank=True)
     current_address = models.CharField(max_length=100,blank=True)
     
+    
     def __str__(self):
         return str(self.id)
      
-
-
-
+    
+    class Meta:
+        ordering = ['id']
+            
 
 
 #Guest
@@ -83,6 +95,7 @@ class Guest(User):
     
     class Meta:
         proxy = True
+        managed = False
     
   
 #Worker

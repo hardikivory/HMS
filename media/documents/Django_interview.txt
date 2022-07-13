@@ -1,0 +1,219 @@
+-------------------------------------  DJANGO  -----------------------------------------------
+
+1.
+What is Django and how does work?
+    - Django is a high-level Python base web framework that enables development of secure and
+      maintainable websites.
+
+    - Django follows MVT architecture.
+        Model - here define a classes. and each class is map with database table.
+        View - here define functions and method. its take http request and return final result as a response.
+        Template - Template is a file. where you describe how result should be represent.
+
+
+
+2.
+flow of Django?
+
+    - Django recived Url. and call the view that match with Url's view.
+    - Django run this view and go for model and recived some result from the data base. and return
+    result to the templates as a response.
+    - Template display result on Webpage.
+
+
+
+3.
+Django Commands?
+    Create Project:
+        - django-admin startproject <project name>
+
+    Create App:
+        - python3 manage.py startapp <application name>
+
+    Make Migrations:
+        command: - python3 manage.py makemigrations
+        does: - makemigrations is create a SQL query.
+
+    Migrate:
+        command: - python3 manage.py Migrate
+        does: - migrate is run SQL query.
+
+    Create Superuser:
+        - python3 manage.py createsuperuser <superuser name>
+
+    Collect static:
+        - python3 manage.py collectstatic
+
+    Change Password:
+        - python3 manage.py changepassword
+
+    Run server:
+        - python3 manage.py runserver
+
+    Show migrations:
+        command: - python3 manage.py showmigrations
+        does: - show all migrations you can applied. 
+
+    Sql migrate:
+        command: - python3 manage.py sqlmigrate <app_name> <migration_file>
+        does: - shows only SQL base migrations
+
+
+    
+4.
+Django template?
+    variables:
+        - its write in double curly bracket.
+            {{ <variable_name> }}
+
+    tags:
+        - its write in double curly bracket and double modulo sign.
+            {% < conditions, tags > %}
+            conditions= if, else, for, etc.
+            tags= block, endblock, csrf_token, etc.
+        
+    comments:
+        - {% comment 'this is comment' %}
+        - {# small line comment #}
+
+    cycle:
+        write: - {% cycle 'attribute_1' 'attribute_2' 'attribute_3' 'attribute_4' 'attribute_5' %}
+        does: - Its use with loops. and take attributes each itrator.
+
+        write: - {% resetcycle %}
+        does: - cycle flow control go to start position.
+    
+    extend:
+        write: - {% extends 'mymaster.html' %}
+        does: - extend code from another templates.
+                - This means that you can have one master page that acts like a parent for all
+                other pages.
+
+    include:
+        write: - {% include 'footer.html' %}
+        does: - use for when you want some line of code in some other pages.
+    
+    include variable:
+        write:
+            - first_page.html
+                This is {{ user }}. age is {{ age }}
+
+            - second_page.html
+                {% include 'first_page.html' with user= 'hardik' age= 24 %}
+    
+    filter:
+        write:
+            - {% firstname|upper %}       <--- convert firstname value in uppercase.
+            - {% firstname|first|upper %}       <--- convert firstname value's first latter in uppercase.
+
+            - {% filter upper %}
+                <h3> This is uppercase latter </h3>
+              {% endfilter %}
+
+
+
+5.
+Django Query_set?
+    - Queryset is a collection of data from a database.
+
+    Queries:
+        all(): 
+            query: - Student.object.all()
+            does: - return Query object.
+
+        values():
+            query: - Student.object.all().values()
+            does: - return all the fields with items in a Queryset.
+
+        values_list():
+            query: - Student.object.all().values_list()
+            does: - return specific column from the database table.
+
+        filter():
+            query: - Student.object.filter(firstname = 'Hardik').values()
+            does: - return specific row from the database table.
+
+            query: - Student.object.filter(firstname = 'Hardik', id=2).values()
+            does: - return specific row when both conditions are True.
+
+            query: - Student.object.filter(firstname = 'Hardik') | Student.object.filter(firstname = 'Kriti')
+            does: - return row if firstname is Hardik or Kriti.
+
+            Fields Lookups:
+
+                query: - Student.object.filter(firstname__startwith = 'L').values()
+                does: returns only those values which is start with L.
+
+                ex. contains, exact, isnull, range, etc.
+
+        order_by():
+            Assending Order:
+                query: - Student.object.all().order_by('firstname').values()
+                does: - Its return all the values Assending order by firstname.
+            Descending Order:
+                query: - Student.object.all().order_by('-firstname').values()
+                does: - Its return all the values in Descending order by firstname.
+
+
+--------------------------    QUATIONS ANSWERS    -----------------------------------
+
+1.
+Explain the Django project Directory Structure?
+    manage.py:
+        - its allows you to intract with django project.
+    __init__.py:
+        - its a empty file that tells a python current directry is a python package.
+    settings.py:
+        - all the configurations is define in settings.py.
+            ex. DB connections, Mileware, Installed_app etc.
+    urls.py:
+        - All the Urls of the project write here.
+    wsgi.py:
+        - This is entry point of for your application which is used for serve your project to
+        the web server.
+
+
+
+2.
+what is ORM?
+    - ORM is a powerfull features in python. it is use for performing SQL Querys without writing
+     them.
+    
+
+
+3.
+what is a staticfiles?
+    - Websites generally needs some additional files, such as images, javascript, css. this
+      file reffered to as 'static files'.
+    - django provides django.contrib.staticfiles to manage this static files.
+
+
+
+4.
+what is DRF?
+    DRF - Django Rest framework
+    - it is a rest framework based on Django rest framework.
+    - it is use for create RESTful APIs.
+
+
+
+5.
+What is a django-admin?
+    - it is a django command-line utility for administative tasks.
+
+
+
+6.
+diff. between project and app?
+    - project is a entire Django application. and app is a module in project that is deals with
+     one specific use case.
+
+
+
+7.
+What is signal in django?
+
+        
+
+
+        

@@ -118,6 +118,15 @@ All the APIs:
                         url - http://127.0.0.1:8000/accounts/logout/
                         Description - rediret logout page. where user logout own account.
 
+                - Guest Change Password Link
+                        url - http://127.0.0.1:8000/accounts/guest/changepassword/link/
+                        Description - rediret to the guest dashboard after change password link send on guest email, when click on change password link
+                        redirect to the change password page.
+
+                - Guest Change Password
+                        url - http://127.0.0.1:8000/accounts/guest/changepassword/
+                        Description - rediret change password page. where guest change own password.
+
                 - Guest Dashboard
                         url - http://127.0.0.1:8000/accounts/guest/dashboard/
                         Description - rediret guest dashboard page. where guest show own personal and room informations.
@@ -129,6 +138,15 @@ All the APIs:
                 - Guest Delete Profile
                         url - http://127.0.0.1:8000/accounts/guest/delete/<id>
                         Description - Delete guest profile and redirect home page.
+
+                - Worker Change Password Link
+                        url - http://127.0.0.1:8000/accounts/worker/changepassword/link/
+                        Description - rediret to the worker dashboard after change password link send on guest email, when click on change password link
+                        redirect to the change password page.
+
+                - Worker Change Password
+                        url - http://127.0.0.1:8000/accounts/worker/changepassword/
+                        Description - rediret change password page. where worker change own password.
 
                 - Worker Dashboard
                         url - http://127.0.0.1:8000/accounts/worker/dashboard/

@@ -64,11 +64,13 @@
         <li><a href="{% url 'contact' %}">Contact</a></li>
 
 
-        {% if guest %}
+        {% if guest %}   
         <li><a class="logout" href="{% url 'logout' %}">Logout</a></li>
+       
         <li><a class="dashboard" href="{% url 'guest_dashboard' %}">Dashboard</a></li>
         <li><a class="" href="">Guest ID : {{guest}}</a></li>
         {% elif worker %}
+       
         <li><a class="logout" href="{% url 'logout' %}">Logout</a></li>
         <li><a class="dashboard" href="{% url 'worker_dashboard' %}">Dashboard</a></li>
         <li><a class="" href="">Worker ID : {{worker}}</a></li>

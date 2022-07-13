@@ -9,14 +9,14 @@ class UserRegisterForm(forms.ModelForm):
     
     class Meta:
         model = User
-        fields = ['username', 'email', 'password']
+        fields = ['username', 'email']
 
 
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
         self.fields['username'].widget.attrs.update({'class' : 'form-control'})
         self.fields['email'].widget.attrs.update({'class' : 'form-control'})
-        self.fields['password'].widget.attrs.update({'class' : 'form-control'})
+        # self.fields['password'].widget.attrs.update({'class' : 'form-control'})
 
 class UserLoginForm(forms.ModelForm):
     
@@ -40,10 +40,25 @@ class UserLoginForm(forms.ModelForm):
             
 
 
+
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
         self.fields['username'].widget.attrs.update({'class' : 'form-control'})
         self.fields['password'].widget.attrs.update({'class' : 'form-control'})
+
+
+
+class ChangePasswordForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['password']
+
+
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+       
+        self.fields['password'].widget.attrs.update({'class' : 'form-control'})
+
 
 
 
@@ -52,13 +67,13 @@ class GuestUpdateForm(forms.ModelForm):
     
     class Meta:
         model = Guest
-        fields = ['username', 'first_name', 'last_name', 'father_name', 'age', 'gender', 'email', 'phn_no', 'native_address', 'work_address']
+        fields = ['username', 'profile_pic', 'document', 'first_name', 'last_name', 'father_name', 'age', 'gender', 'email', 'phn_no', 'native_address', 'work_address']
 
-       
-     
 
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
+        self.fields['document'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['profile_pic'].widget.attrs.update({'class' : 'form-control'})
         self.fields['username'].widget.attrs.update({'class' : 'form-control'})
         self.fields['first_name'].widget.attrs.update({'class' : 'form-control'})
         self.fields['last_name'].widget.attrs.update({'class' : 'form-control'})
@@ -72,16 +87,19 @@ class GuestUpdateForm(forms.ModelForm):
         # self.fields['password'].widget.attrs.update({'class' : 'form-control'})
 
 
+
 class WorkerUpdateForm(forms.ModelForm):
     
     class Meta:
         model = Worker
-        fields = ['username', 'first_name', 'last_name', 'age', 'gender', 'email', 'phn_no', 'native_address', 'current_address']
+        fields = ['username', 'profile_pic', 'document', 'first_name', 'last_name', 'age', 'gender', 'email', 'phn_no', 'native_address', 'current_address']
 
         
 
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
+        self.fields['document'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['profile_pic'].widget.attrs.update({'class' : 'form-control'})
         self.fields['username'].widget.attrs.update({'class' : 'form-control'})
         self.fields['first_name'].widget.attrs.update({'class' : 'form-control'})
         self.fields['last_name'].widget.attrs.update({'class' : 'form-control'})
