@@ -20,12 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = 'django-insecure-r*jd=(p^v&shl)12vk=g@*3+51w^wuu&5s2-n^dz4kqpsr2^6g'
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["hostel-management-practice.herokuapp.com", "localhost"]
+ALLOWED_HOSTS = ["hostel-management-practice.herokuapp.com", "localhost", "*"]
 
 
 # Application definition
@@ -42,7 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -131,12 +132,12 @@ AUTH_USER_MODEL = 'accounts.User'
 #STATIC
 
 # STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR/'static'   # heroku
 # STATIC_ROOT = BASE_DIR/'static'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static/')
 ]
 
+STATIC_ROOT = BASE_DIR / 'static'
 
 #MEDIA
 

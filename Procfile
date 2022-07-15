@@ -1,1 +1,1 @@
-web: waitress-serve --port=$PORT HMS.wsgi:application
+web: waitress-serve --port=8000 HMS.wsgi:application
