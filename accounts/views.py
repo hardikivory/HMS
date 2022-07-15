@@ -3,7 +3,7 @@
 from tabnanny import check
 from django.shortcuts import redirect, render, HttpResponse
 from requests import delete, request
-from traitlets import Instance
+
 from .forms import ChangePasswordForm, ContactForm, GuestUpdateForm, UserRegisterForm, UserLoginForm, WorkerUpdateForm, RoomForm
 from . models import User, Guest, Worker, Room
 from django.db.models import Q
